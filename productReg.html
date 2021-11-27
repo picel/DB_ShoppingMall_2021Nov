@@ -11,47 +11,45 @@
         상품 관리 > 상품 등록
       </div>
       <div class="Div05W">
+        <form id='post' method=post action=productIn.php  enctype='multipart/form-data'>
         <div class="inputList" style="display:inline-block; width:200px;">
           상품명
         </div>
         <div style="display:inline-block; float:right;">
-          <select class=select name=field>
+          <select class=select name=class>
   					<option value="none">카테고리 선택</option>
-            <option value="none">Phone</option>
-            <option value="none">Watch</option>
-            <option value="none">Tablet</option>
-            <option value="none">Laptop</option>
+            <option value="1">Phone</option>
+            <option value="2">Watch</option>
+            <option value="3">Tablet</option>
+            <option value="4">Laptop</option>
   				</select>
         </div>
         <div class="input">
-          <input class=text type=text name=key size=43 placeholder="상품명">
-        </div>
-        <div>
-
+          <input class=text type=text name=name size=43 placeholder="상품명">
         </div>
         <div class="inputList">
           단가
         </div>
         <div class="input">
-          <input class=text type=text name=key size=43 placeholder="단가">
+          <input class=text type=text name=price size=43 placeholder="단가">
         </div>
         <div class="inputList">
           수량
         </div>
         <div class="input">
-          <input class=text type=text name=key size=43 placeholder="수량">
+          <input class=text type=text name=quantity size=43 placeholder="수량">
         </div>
         <div class="inputList">
           이미지
-          <label for='ex_file' class='fas fa-file'></label>
-  				<input type=file id='ex_file' name='userfile' size=45 maxlength=80>
         </div>
-        <div class="input">
-          <input class=text type=text name=key size=43 placeholder="이미지 링크">
+        <div class="input" style="color:gray;">
+          <label for="ex_file" class="fas fa-file">업로드</label>
+  				<input type=file id=ex_file name=userfile size=45 maxlength=80>
         </div>
         <div class=submit>
-          상품 등록
+          <button type=submit>상품 등록</button>
         </div>
+      </form>
       </div>
     </div>
   </body>

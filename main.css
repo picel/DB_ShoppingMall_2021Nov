@@ -12,9 +12,15 @@ a {
   color: inherit;
 }
 button {
+  height:100%;
+  width:100%;
   border: 0px;
-  background-color: #FFFFFF;
+  background-color: transparent;
   font-size:15px;
+  font-family: 'OTWelcomeRA';
+  line-height: 1.5;
+  color:white;
+  font-size: 25px;
 }
 input[type='file'] {
   position: absolute;
@@ -101,10 +107,10 @@ option {
 	appearance: none;
 }
 .submit {
-  padding: 30px;
+  width: 490px;
+  height: 100px;
   text-align: center;
   background-color: black;
-  font-size: 25px;
   color: white;
 }
 .Div05W {
