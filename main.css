@@ -29,7 +29,7 @@ a {
   height: 400px;
   background-color: #BBDEFB;
 }
-.listContainer {
+.itemList1R {
   width: 980px;
   height: 300px;
   background-color: lightgray;
@@ -41,27 +41,40 @@ a {
   display: inline-block;
   background-color: cyan;
 }
-.listName {
+.Div60W {
+  width: 980px;
+  height: 60px;
+}
+.Div60C {
   width: 940px;
   padding: 20px;
   height: 20px;
   text-align: center;
 }
-.listExpand {
+.Div60R {
   width: 940px;
-  text-align: right;
   padding: 20px;
   height: 20px;
-  background-color: cyan;
+  text-align: right;
 }
-.menuWrap {
-  width: 980px;
+.Div60L {
+  width: 940px;
+  padding: 20px;
+  height: 20px;
+  text-align: left;
 }
-.menuNav {
+.Div140L {
+  width: 940px;
+  padding: 30px;
+  height: 100px;
+  text-align: left;
+}
+.menuNav76 {
   text-align: center;
   padding: 20px;
   disply: inline-block;
   width: 70px;
+  height: 20px;
   float: left;
 }
 .logo {
