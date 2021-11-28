@@ -17,15 +17,21 @@
         </div>
         <div style="display:inline-block; float:right;">
           <select class=select name=class>
-  					<option value="none">카테고리 선택</option>
-            <option value="1">Phone</option>
-            <option value="2">Watch</option>
-            <option value="3">Tablet</option>
-            <option value="4">Laptop</option>
+  					<option value='0'>카테고리 선택</option>
+            <option value="Phone">Phone</option>
+            <option value="Watch">Watch</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
   				</select>
         </div>
         <div class="input">
           <input class=text type=text name=name size=43 placeholder="상품명">
+        </div>
+        <div class="inputList">
+          상품 코드
+        </div>
+        <div class="input">
+          <input class=text type=text name=code size=43 placeholder="상품 코드">
         </div>
         <div class="inputList">
           단가
@@ -43,11 +49,11 @@
           이미지
         </div>
         <div class="input" style="color:gray;">
-          <label for="ex_file" class="fas fa-file">업로드</label>
+          <label for="ex_file" class="fas fa-file" style='font-size:18px;'>업로드</label>
   				<input type=file id=ex_file name=userfile size=45 maxlength=80>
         </div>
         <div class=submit>
-          <button type=submit>상품 등록</button>
+          <button id=form type=submit>상품 등록</button>
         </div>
       </form>
       </div>

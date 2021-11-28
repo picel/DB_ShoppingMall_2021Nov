@@ -1,11 +1,23 @@
 <?
 $name = $_POST['name'];
 $price = $_POST['price'];
+$code = $_POST['code'];
+$class = $_POST['class'];
 
 if (!$name){
 	echo("
 		<script>
-		window.alert('상품명이 없습니다. 다시 입력하세요.')
+		window.alert('상품명을 입력 해 주세요.')
+		history.go(-1)
+		</script>
+	");
+	exit;
+}
+
+if (!$code){
+	echo("
+		<script>
+		window.alert('상품 코드를 입력 해 주세요.')
 		history.go(-1)
 		</script>
 	");
@@ -15,14 +27,33 @@ if (!$name){
 if(!$price){
 	echo("
 		<script>
-		window.alert('가격이 없습니다. 다시 입력하세요.')
+		window.alert('가격을 입력 해 주세요.')
 		history.go(-1)
 		</script>
 	");
 	exit;
 }
 
-$class = $_POST['class'];
+if($class == '0'){
+	echo("
+		<script>
+		window.alert('카테고리를 선택 해 주세요.')
+		history.go(-1)
+		</script>
+	");
+	exit;
+}
+
+if(empty($_FILES['userfile']['name'])){
+	echo("
+		<script>
+		window.alert('이미지를 첨부 해주세요.')
+		history.go(-1)
+		</script>
+	");
+	exit;
+}
+
 $quantity = $_POST['quantity'];
 $userfile = $_FILES['userfile'];
 $file_path = $userfile['tmp_name'];
@@ -45,7 +76,7 @@ $fileLink = "https://ShopMall2021NOV.b-cdn.net/$file_name";
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 
-$result = mysqli_query($con, "insert into product(class, name, price, image, hit) values ($class, '$name', '$price', '$fileLink', 0)");
+$result = mysqli_query($con, "insert into product(code, class, name, price, quantity, image) values ('$code', '$class', '$name', $price, $quantity, '$fileLink')");
 
 mysqli_close($con);
 
@@ -55,5 +86,5 @@ echo("
   </script>
 ");
 
-echo ("<meta http-equiv='Refresh' content='0; url=productReg.html'>");
+echo ("<meta http-equiv='Refresh' content='0; url=productMan.html'>");
 ?>
