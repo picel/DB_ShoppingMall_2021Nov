@@ -183,6 +183,14 @@ img#preview {
   background-color: white;
   color: black;
 }
+.menuNav20-6 {
+  text-align: center;
+  padding: 20px;
+  disply: inline-block;
+  width: 160px;
+  height: 20px;
+  float: left;
+}
 .menuNav15-6 {
   text-align: center;
   padding: 20px;
@@ -197,6 +205,15 @@ img#preview {
   disply: inline-block;
   width: 70px;
   height: 20px;
+  float: left;
+}
+.menuNav20-15 {
+  text-align: center;
+  padding: 20px;
+  padding-top: 65px;
+  disply: inline-block;
+  width: 160px;
+  height: 45px;
   float: left;
 }
 .menuNav15-15 {

@@ -24,7 +24,7 @@ else
 {
   if (empty($_GET['cpage'])) $cpage = 1;
   else $cpage = $_GET['cpage'];
-  $pagesize = 10;
+  $pagesize = 5;
   $totalpage = (int)($total / $pagesize);
   if (($total % $pagesize) != 0) $totalpage = $totalpage + 1;
   $counter = 0;
@@ -38,12 +38,12 @@ else
       $quantity = mysqli_result($result, $newcounter, "quantity");
       $image = mysqli_result($result, $newcounter, "image");
       echo ("
-      <div class='Div150W'>
+      <div class='Div150W' style='margin-top:10px;'>
         <div class='menuNav11-15'>$code</div>
         <div class='menuNav11-15'>$class</div>
-        <div class='menuNav15-15'>$name</div>
+        <div class='menuNav20-15'>$name</div>
         <div class='imageContainer'><img src='$image' id='preview'></div>
-        <div class='menuNav11-15'>$price</div>
+        <div class='menuNav15-15'>$price</div>
         <div class='menuNav11-15'>$quantity</div>
         <div class='menuNav15-15'>수정 / 삭제</div>
       </div>
