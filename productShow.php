@@ -41,7 +41,7 @@ else
       <div class='Div150W' style='margin-top:10px;'>
         <div class='menuNav11-15'>$code</div>
         <div class='menuNav11-15'>$class</div>
-        <div class='menuNav20-15'>$name</div>
+        <div class='menuNav20-15'><a href=product.html?code=$code>$name</a></div>
         <div class='imageContainer'><img src='$image' id='preview'></div>
         <div class='menuNav15-15'>$price</div>
         <div class='menuNav11-15'>$quantity</div>
