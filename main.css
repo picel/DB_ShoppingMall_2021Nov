@@ -67,6 +67,7 @@ input[type='button'] {
 }
 .outerDiv {
   width: 980px;
+  height: auto;
   margin: 0 auto;
 }
 .leftDiv {
@@ -78,7 +79,7 @@ input[type='button'] {
 }
 .rightDiv {
   width: 380px;
-  height: 600px;
+  height: auto;
   display: inline-block;
   float:left;
 }
