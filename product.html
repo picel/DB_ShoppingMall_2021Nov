@@ -41,7 +41,7 @@ $image = mysqli_result($result, 0, "image");
       </div>
       <div class="rightDiv">
         <div style="height:285px; width:380px;">
-          <div class="menuNav38-8" style="font-size: 20px;">><? echo $class ?></div>
+          <div class="menuNav38-8" style="font-size: 20px;"><a href=category.html?class=<? echo ("$class>$class"); ?></div>
           <div class="menuNav38-8" style="font-size: 30px; font-weight:bold;"><? echo $name ?></div>
           <div class="menuNav38-8" style="font-size: 25px;"><? echo $price ?>\</div>
           <div class="menuNav38-8" style="text-align:right; padding-top:0px;"><? echo $quantity ?>개 남았습니다.</div>
