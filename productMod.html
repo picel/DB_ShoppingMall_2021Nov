@@ -1,0 +1,93 @@
+<? function mysqli_result($res, $row = 0, $col = 0)
+{
+    $nums = mysqli_num_rows($res);
+    if ($nums && $row <= ($nums - 1) && $row >= 0)
+    {
+        mysqli_data_seek($res, $row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col]))
+        {
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
+$code = $_GET['code'];
+$tmpcode = $code;
+
+$con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
+$result = mysqli_query($con, "select * from product where code='$code'");
+
+$class = mysqli_result($result, 0, "class");
+$name = mysqli_result($result, 0, "name");
+$price = mysqli_result($result, 0, "price");
+$quantity = mysqli_result($result, 0, "quantity");
+
+?>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); include("adminbanner.html") ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        상품 관리 > 상품 등록
+      </div>
+      <div style="text-align:center;"><a style="color:red; font-size: 25px;">카테고리와 이미지를 새로 등록 해 주세요!</a></div>
+      <div class="Div05W">
+        <form id='post' method=post action=productMod.php?code=<? echo $tmpcode; ?>  enctype='multipart/form-data'>
+        <div class="inputList" style="display:inline-block; width:200px;">
+          상품명
+        </div>
+        <div style="display:inline-block; float:right;">
+          <select class=select name=class>
+  					<option value='0'>카테고리 선택</option>
+            <option value="Phone">Phone</option>
+            <option value="Watch">Watch</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
+  				</select>
+        </div>
+        <div class="input">
+          <input class=text type=text name=name size=43 placeholder="상품명" value="<? echo $name ?>">
+        </div>
+        <div class="inputList">
+          상품 코드
+        </div>
+        <div class="input">
+          <input class=text type=text name=code size=43 placeholder="상품 코드" value="<? echo $code ?>">
+        </div>
+        <div class="inputList">
+          단가
+        </div>
+        <div class="input">
+          <input class=text type=text name=price size=43 placeholder="단가" value="<? echo $price ?>">
+        </div>
+        <div class="inputList">
+          수량
+        </div>
+        <div class="input">
+          <input class=text type=text name=quantity size=43 placeholder="수량" value="<? echo $quantity ?>">
+        </div>
+        <div class="inputList">
+          이미지
+        </div>
+        <div class="input" style="color:gray;">
+          <label for="ex_file" class="fas fa-file" style='font-size:18px;'>업로드</label>
+  				<input type=file id=ex_file name=userfile size=45 maxlength=80>
+        </div>
+        <div class=submit>
+          <button id=form type=submit>상품 수정</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

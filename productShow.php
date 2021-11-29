@@ -46,7 +46,7 @@ else
         <div class='menuNav15-15'>$price</div>
         <div class='menuNav11-15'>$quantity</div>
         <div class='menuNav15-15'>
-          <a href=productMod.php?code=$code>수정</a> /
+          <a href=productMod.html?code=$code>수정</a> /
           <a href=productDel.php?code=$code>삭제</a>
         </div>
       </div>
