@@ -47,6 +47,10 @@ img#preview {
   height:150px;
   width: 150px;
 }
+img#previewC {
+  height:200px;
+  width: 200px;
+}
 img#productpg {
   height:560px;
   width: 560px;
@@ -119,6 +123,18 @@ input[type='button'] {
   width: 200px;
   display: inline-block;
   background-color: cyan;
+}
+.listWrap {
+  width: 980px;
+  height: auto;
+  padding-top: 10px;
+}
+.listCol {
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  height: 260px;
+  overflow: hidden;
 }
 .inputList {
   padding: 10px;

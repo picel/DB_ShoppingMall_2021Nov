@@ -1,4 +1,5 @@
-<? function mysqli_result($res, $row = 0, $col = 0)
+<?
+function mysqli_result($res, $row = 0, $col = 0)
 {
     $nums = mysqli_num_rows($res);
     if ($nums && $row <= ($nums - 1) && $row >= 0)
@@ -12,8 +13,11 @@
     }
     return false;
 }
+
+$class = $_GET['class'];
+
 $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
-$result = mysqli_query($con, "select * from product order by class");
+$result = mysqli_query($con, "select * from product where class='$class'");
 $total = mysqli_num_rows($result);
 
 if (!$total)
@@ -24,32 +28,33 @@ else
 {
   if (empty($_GET['cpage'])) $cpage = 1;
   else $cpage = $_GET['cpage'];
-  $pagesize = 5;
+  $pagesize = 12;
   $totalpage = (int)($total / $pagesize);
   if (($total % $pagesize) != 0) $totalpage = $totalpage + 1;
   $counter = 0;
+  echo ("<div class='listWrap'>");
   while ($counter < $pagesize):
-      $newcounter = ($cpage - 1) * $pagesize + $counter;
+      do {
+        $newcounter = ($cpage - 1) * $pagesize + $counter;
+        if ($newcounter == $total) break;
+        $code = mysqli_result($result, $newcounter, "code");
+        $name = mysqli_result($result, $newcounter, "name");
+        $price = mysqli_result($result, $newcounter, "price");
+        $image = mysqli_result($result, $newcounter, "image");
+        echo ("
+          <a href=product.html?code=$code>
+            <div class='listCol'>
+              <div><img src='$image' id='previewC'></div>
+              <div>$name</div>
+              <div>$price</div>
+            </div>
+          </a>
+        ");
+        $counter = $counter + 1;
+      } while ($newcounter % 4 != 0);
       if ($newcounter == $total) break;
-      $code = mysqli_result($result, $newcounter, "code");
-      $class = mysqli_result($result, $newcounter, "class");
-      $name = mysqli_result($result, $newcounter, "name");
-      $price = mysqli_result($result, $newcounter, "price");
-      $quantity = mysqli_result($result, $newcounter, "quantity");
-      $image = mysqli_result($result, $newcounter, "image");
-      echo ("
-      <div class='Div150W' style='margin-top:10px;'>
-        <div class='menuNav11-15'>$code</div>
-        <div class='menuNav11-15'><a href=category.html?class=$class>$class</a></div>
-        <div class='menuNav20-15'><a href=product.html?code=$code>$name</a></div>
-        <div class='imageContainer'><img src='$image' id='preview'></div>
-        <div class='menuNav15-15'>$price</div>
-        <div class='menuNav11-15'>$quantity</div>
-        <div class='menuNav15-15'>수정 / 삭제</div>
-      </div>
-      ");
-      $counter = $counter + 1;
   endwhile;
+  echo ("</div>");
   echo ("<div class='Div60C' style='padding-top:30px; border-top: 4px solid black;'><div style='text-align:center; display:inline-block; padding:10px;'>");
   if (empty($_GET['cblock'])) $cblock = 1;
   else $cblock = $_GET['cblock'];
@@ -67,9 +72,6 @@ else
       $i = $i + 1;
   endwhile;
   if ($nstartpage <= $totalpage) echo ("[<a href=productMan.html?cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
-  echo("</div>
-    <a href='productReg.html'><div style='display:inline-block; padding:10px; float:right; background-color:black; color:white;'>상품 등록</div></a>
-    </div>
-  ");
+  echo("</div>");
 }
 ?>
