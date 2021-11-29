@@ -45,7 +45,10 @@ else
         <div class='imageContainer'><img src='$image' id='preview'></div>
         <div class='menuNav15-15'>$price</div>
         <div class='menuNav11-15'>$quantity</div>
-        <div class='menuNav15-15'>수정 / 삭제</div>
+        <div class='menuNav15-15'>
+          <a href=productMod.php?code=$code>수정</a> /
+          <a href=productDel.php?code=$code>삭제</a>
+        </div>
       </div>
       ");
       $counter = $counter + 1;

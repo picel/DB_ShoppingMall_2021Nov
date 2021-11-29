@@ -46,7 +46,7 @@ else
             <div class='listCol'>
               <div><img src='$image' id='previewC'></div>
               <div>$name</div>
-              <div>$price</div>
+              <div>$price\</div>
             </div>
           </a>
         ");
