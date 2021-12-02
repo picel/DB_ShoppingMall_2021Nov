@@ -30,7 +30,7 @@
           }
         }
         function   go_zip() {
-          window.open('zipcode.php','ZIP','width=600, height=250, scrollbars=yes');
+          window.open('zipcode.html','ZIP','width=600, height=550, scrollbars=yes');
         }
     </script>
     <script  src='http://code.jquery.com/jquery-latest.min.js'></script>
@@ -93,14 +93,14 @@
               주소
             </div>
             <div class="input">
-              <input class=text type=tel name=phone size=6 placeholder="우편번호" disabled>
-
+              <input class=text type=text name=zip size=6 placeholder="우편번호" readonly=readonly>
+              <a href='javascript:go_zip()'>[우편번호검색]</a>
             </div>
             <div class="input">
-              <input class=text type=tel name=phone size=43 placeholder="주소">
+              <input class=text type=text name=addr1 size=43 placeholder="건물 주소" readonly=readonly>
             </div>
             <div class="input">
-              <input class=text type=tel name=phone size=43 placeholder="상세 주소">
+              <input class=text type=text name=addr2 size=43 placeholder="상세 주소">
             </div>
           </div>
           <div class=submit>

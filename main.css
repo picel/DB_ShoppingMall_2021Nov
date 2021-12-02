@@ -183,6 +183,13 @@ input[type='button'] {
   background-color: black;
   color: white;
 }
+.popUpBanner {
+  width:100%;
+  padding:20px;
+  background-color:black;
+  color:white;
+  font-size:20px;
+}
 .submitButton {
   width:125px;
   background-color:black;

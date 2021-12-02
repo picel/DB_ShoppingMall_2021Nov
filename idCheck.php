@@ -25,7 +25,7 @@ echo("
 </script>
 <link rel='stylesheet' href='main.css' type='text/css'>
 <form method=post action=idCheck.php name=idcheck>
-<div style='width:100%; padding:20px; background-color:black; color:white;font-size:20px;'>ID 중복확인</div>
+<div class='popUpBanner'>ID 중복확인</div>
 <div style='text-align:center;'>
 ");
 
