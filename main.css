@@ -136,10 +136,23 @@ input[type='button'] {
   height: 260px;
   overflow: hidden;
 }
+.dupCheck {
+  width:auto;
+  height:auto;
+  padding: 21px;
+  color:white;
+  background-color: black;
+  display: inline-block;
+  float:right;
+}
 .inputList {
   padding: 10px;
   padding-bottom: 0px;
-  width: 460px;
+  width: 380px;
+}
+.inputList2 {
+  width: 350px;
+  display: inline-block;
 }
 .input {
   padding: 8px;
