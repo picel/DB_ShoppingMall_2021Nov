@@ -164,7 +164,8 @@ input[type='button'] {
 }
 .submit {
   width: 490px;
-  height: 100px;
+  height: auto;
+  padding-top: 10px;
   text-align: center;
   background-color: black;
   color: white;
@@ -179,6 +180,7 @@ input[type='button'] {
 }
 .Div05W {
   width: 490px;
+  height: auto;
   padding: 4px;
   margin: 0 auto;
   font-size: 20px;

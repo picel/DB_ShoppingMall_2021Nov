@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        Sign In
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=logIn.php>
+          <div>
+            <div class="inputList">
+              아이디
+            </div>
+            <div class="input">
+              <input class=text type=id name=code size=43 placeholder="아이디">
+            </div><div class="inputList">
+              비밀번호
+            </div>
+            <div class="input">
+              <input class=text type=password name=code size=43 placeholder="비밀번호">
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>로그인</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>
