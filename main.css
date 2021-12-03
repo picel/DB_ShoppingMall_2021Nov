@@ -209,7 +209,6 @@ input[type='button'] {
 .Div100LB {
   width: 940px;
   padding: 20px;
-  margin-bottom: 30px;
   text-align: left;
   font-size: 25px;
   border-top: 4px solid black;
@@ -264,6 +263,14 @@ input[type='button'] {
   padding: 20px;
   disply: inline-block;
   width: 160px;
+  height: 20px;
+  float: left;
+}
+.menuNav30-6 {
+  text-align: center;
+  padding: 20px;
+  disply: inline-block;
+  width: 260px;
   height: 20px;
   float: left;
 }
