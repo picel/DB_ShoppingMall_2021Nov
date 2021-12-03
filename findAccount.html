@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        아이디 찾기
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=findID.php>
+          <div>
+            <div class="inputList">
+              이름 (실명)
+            </div>
+            <div class="input">
+              <input class=text type=name name=name size=43 placeholder="이름 (실명)">
+            </div>
+            <div class="inputList">
+              이메일 주소
+            </div>
+            <div class="input">
+              <input class=text type=email name=email size=43 placeholder="이메일 주소">
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>아이디 찾기</button>
+          </div>
+        </form>
+      </div>
+      <div class="Div100LB" style="margin-top: 80px;">
+        비밀번호 찾기
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=findPW.php>
+          <div>
+            <div class="inputList">
+              아이디
+            </div>
+            <div class="input">
+              <input class=text type=id name=id size=43 placeholder="아이디">
+            </div>
+            <div class="inputList">
+              이름 (실명)
+            </div>
+            <div class="input">
+              <input class=text type=name name=name size=43 placeholder="이름 (실명)">
+            </div>
+            <div class="inputList">
+              이메일 주소
+            </div>
+            <div class="input">
+              <input class=text type=email name=email size=43 placeholder="이메일 주소">
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>비밀번호 찾기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>
