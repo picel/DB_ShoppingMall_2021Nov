@@ -1,0 +1,33 @@
+<? $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall"); ?>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); include("adminbanner.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        홈
+      </div>
+      <div class="Div100LB">
+        등록된 상품 수 :
+        <?
+          $result = mysqli_query($con, "select * from product");
+          echo mysqli_num_rows($result);
+        ?>개<br><br>
+        판매된 상품 수 :
+        <br><br>
+        가입된 회원 수 :
+        <?
+          $result = mysqli_query($con, "select * from member");
+          echo mysqli_num_rows($result);
+        ?>명
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>
