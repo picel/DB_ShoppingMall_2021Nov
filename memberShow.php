@@ -41,16 +41,20 @@ else
       $isadmin = mysqli_result($result, $newcounter, "isadmin");
       echo ("
       <div class='Div100W' style='margin-top:10px;'>
-        <div class='menuNav11-6'><br>$uid</div>
+        <div class='menuNav11-6'><br>$uid
+        ");
+      if($isadmin == 1) echo("<br>(관리자)");
+      echo ("
+        </div>
         <div class='menuNav15-6'><br>$uname</div>
         <div class='menuNav20-6'>$umail<br><br>$uphone</div>
         <div class='menuNav30-6'>$zipcode<br>$addr1<br>$addr2</div>
         <div class='menuNav20-6'>
         ");
-      if ($isadmin == 0) echo("<a href=memberMan.php?mode=1>관리자로 승급</a><br><br>");
-      else echo("<a href=memberMan.php?mode=2>관리자 권한 박탈</a><br>");
+      if ($isadmin == 0) echo("<a href=memberMan.php?uid=$uid&mode=1>관리자로 승급</a><br><br>");
+      else echo("<a href=memberMan.php?uid=$uid&mode=2>관리자 권한 박탈</a><br><br>");
       echo("
-          <a href=memberMan.php?mode=3>회원 삭제</a>
+          <a href=memberMan.php?uid=$uid&mode=3>회원 삭제</a>
         </div>
       </div>
       ");
