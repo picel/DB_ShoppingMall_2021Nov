@@ -73,9 +73,6 @@ else
       $i = $i + 1;
   endwhile;
   if ($nstartpage <= $totalpage) echo ("[<a href=productMan.html?cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
-  echo("</div>
-    <a href='productReg.html'><div style='display:inline-block; padding:10px; float:right; background-color:black; color:white;'>상품 등록</div></a>
-    </div>
-  ");
 }
+echo("</div>")
 ?>
