@@ -1,10 +1,22 @@
 <div class="top">
   <div class="Div60W" style="background-color:black; color:white;">
     <a href=index.html><div class="logo">Up to Date</div></a>
-    <a href=signIn.html><div class="menuNav11-6">Sign In</div></a>
-    <a href=signUp.html><div class="menuNav11-6">Sign Up</div></a>
-    <div class="menuNav11-6">Cart</div>
-    <div class="menuNav11-6">MyPage</div>
+    <?
+    if (isset($_COOKIE['UserID'])) {
+      $userid = $_COOKIE['UserID'];
+      $username = $_COOKIE['UserName'];
+      $isadmin = $_COOKIE['isadmin'];
+      echo("<a href=signOut.php><div class='menuNav11-6' style='float:right;'>SignOut</div></a>
+            <div class='menuNav11-6' style='float:right;'>MyPage</div>
+            <div class='menuNav11-6' style='float:right;'>Cart</div>");
+      if ($isadmin == 1) echo("<a href=adminHome.html><div class='menuNav11-6' style='float:right;'>DashBoard</div></a>");
+      echo("<div class='menuNav20-6' style='float:right;'>Welcome, $username</div>");
+
+    } else {
+      echo("<a href=signUp.html><div class='menuNav11-6' style='float:right;'>Sign Up</div></a>
+            <a href=signIn.html><div class='menuNav11-6' style='float:right;'>Sign In</div></a>");
+    }
+    ?>
   </div>
   <div class="Div60W">
     <div class="menuNav11-6">Best</div>

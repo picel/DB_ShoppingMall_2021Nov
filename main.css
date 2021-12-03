@@ -329,7 +329,7 @@ input[type='button'] {
   padding: 20px;
   disply: inline-block;
   float: left;
-  width: 500px;
+  width: auto;
 }
 .search {
   padding: 20px;
