@@ -54,7 +54,7 @@ if(empty($_FILES['userfile']['name'])){
 	");
 	exit;
 }
-
+$date = date("Y-m-d");
 $quantity = $_POST['quantity'];
 $userfile = $_FILES['userfile'];
 $file_path = $userfile['tmp_name'];
@@ -73,7 +73,6 @@ ftp_put($conn_id, $server_file, $file_path, FTP_BINARY);
 ftp_close($conn_id);
 
 $fileLink = "https://ShopMall2021NOV.b-cdn.net/$file_name";
-
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 

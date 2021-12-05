@@ -53,7 +53,7 @@ if(empty($_FILES['userfile']['name'])){
 	");
 	exit;
 }
-
+$date = date("Y-m-d");
 $quantity = $_POST['quantity'];
 $userfile = $_FILES['userfile'];
 $file_path = $userfile['tmp_name'];
@@ -76,7 +76,7 @@ $fileLink = "https://ShopMall2021NOV.b-cdn.net/$file_name";
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 
-$result = mysqli_query($con, "insert into product(code, class, name, price, quantity, image) values ('$code', '$class', '$name', $price, $quantity, '$fileLink')");
+$result = mysqli_query($con, "insert into product(code, class, name, price, quantity, image, date) values ('$code', '$class', '$name', $price, $quantity, '$fileLink', '$date')");
 
 mysqli_close($con);
 
