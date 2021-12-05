@@ -14,7 +14,7 @@ function mysqli_result($res, $row = 0, $col = 0)
     return false;
 }
 
-$key = $_POST['key'];
+$key = $_GET['key'];
 
 $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
 $result = mysqli_query($con, "select * from product where name like '%$key%' order by name");
@@ -64,14 +64,14 @@ else
   $startpage = ($cblock - 1) * $blocksize + 1;
   $pstartpage = $startpage - 1;
   $nstartpage = $startpage + $blocksize;
-  if ($pblock > 0) echo ("[<a href=productMan.html?cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
+  if ($pblock > 0) echo ("[<a href=productMan.html?key=$key&cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
   $i = $startpage;
   while ($i < $nstartpage):
       if ($i > $totalpage) break;
-      echo ("[<a href=productMan.html?cblock=$cblock&cpage=$i>$i</a>]");
+      echo ("[<a href=productMan.html?key=$key&cblock=$cblock&cpage=$i>$i</a>]");
       $i = $i + 1;
   endwhile;
-  if ($nstartpage <= $totalpage) echo ("[<a href=productMan.html?cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
+  if ($nstartpage <= $totalpage) echo ("[<a href=productMan.html?key=$key&cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
   echo("</div>");
 }
 ?>
