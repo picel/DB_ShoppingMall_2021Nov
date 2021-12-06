@@ -46,15 +46,14 @@ $image = mysqli_result($result, 0, "image");
           <div class="menuNav38-8" style="font-size: 25px;"><? echo $price ?>\</div>
           <div class="menuNav38-8" style="text-align:right; padding-top:0px;"><? echo $quantity ?>개 남았습니다.</div>
         </div>
-        <form id='post' method=post action=pprocess.php>
+        <form id='post' method=post action=toCart.php?code=<? echo $code; ?>>
         <div class="menuNav38-8" style="margin-bottom:30px; padding-top:120px;">
-          <input type=button value="▲" onClick="javascript:this.form.pnum.value++;">
-          <input type=text class="text" name="pnum" value=1 maxlength=2 size=1 style="width:23px;">
-          <input type=button value="▼" onClick="javascript:this.form.pnum.value--;">
+          <input type=button value="▲" onClick="javascript:this.form.quantity.value++;">
+          <input type=text class="text" name="quantity" value=1 maxlength=2 size=1 style="width:23px;">
+          <input type=button value="▼" onClick="javascript:this.form.quantity.value--;">
         </div>
         <div class="menuNav38-8">
-          <div class="submitButton">장바구니</div>
-          <div class="submitButton" style="float:right;">바로구매</div>
+          <div class="submitButton"><button id=form type=submit style="font-size:18px;">장바구니 담기</button></div>
         </div>
         </form>
       </div>

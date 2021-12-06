@@ -5,10 +5,11 @@
     if (isset($_COOKIE['UserID'])) {
       $userid = $_COOKIE['UserID'];
       $username = $_COOKIE['UserName'];
+      $session = $_COOKIE['Session'];
       $isadmin = $_COOKIE['isadmin'];
       echo("<a href=signOut.php><div class='menuNav11-6' style='float:right;'>SignOut</div></a>
             <div class='menuNav11-6' style='float:right;'>MyPage</div>
-            <div class='menuNav11-6' style='float:right;'>Cart</div>");
+            <a href=cart.html><div class='menuNav11-6' style='float:right;'>Cart</div></a>");
       if ($isadmin == 1) echo("<a href=adminHome.html><div class='menuNav11-6' style='float:right;'>DashBoard</div></a>");
       echo("<div class='menuNav20-6' style='float:right;'>Welcome, $username</div>");
 

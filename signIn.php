@@ -45,10 +45,10 @@ else {
 		SetCookie("UserName", "$uname", 0);
     SetCookie("isadmin", $isadmin, 0);
 
-		// $session = md5(uniqid(rand()));
-		// SetCookie("Session", $session, 0);
+		$session = md5(uniqid(rand()));
+		SetCookie("Session", $session, 0);
 
-		// mysql_query("delete from shoppingbag where id='$uid'", $con);
+		mysqli_query($con, "delete from cart where id='$uid'");
 
 		echo ("<meta http-equiv='Refresh' content='0; url=index.html'>");
 	}

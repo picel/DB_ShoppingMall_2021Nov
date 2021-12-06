@@ -47,6 +47,10 @@ img#preview {
   height:150px;
   width: 150px;
 }
+img#cart {
+  height:200px;
+  width: 200px;
+}
 img#previewC {
   height:200px;
   width: 200px;
@@ -64,6 +68,11 @@ input[type='button'] {
   border: none;
   background-color: transparent;
   font-size: 20px;
+}
+.text2 {
+  border: none;
+  background-color: transparent;
+  font-size: 17px;
 }
 .text::placeholder {
   font-family: 'OTWelcomeRA';
@@ -175,6 +184,12 @@ input[type='button'] {
   display: inline-block;
   float: left;
 }
+.cartImageContainer {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  float: left;
+}
 .submit {
   width: 490px;
   height: auto;
@@ -191,10 +206,10 @@ input[type='button'] {
   font-size:20px;
 }
 .submitButton {
-  width:125px;
+  width:160px;
+  height: 60px;
   background-color:black;
   color:white;
-  padding:20px;
   text-align:center;
   display:inline-block;
 }
@@ -242,6 +257,10 @@ input[type='button'] {
 .Div150W {
   width: 980px;
   height: 150px;
+}
+.Div200W {
+  width: 980px;
+  height: 200px;
 }
 .Div140L {
   width: 930px;
@@ -315,6 +334,33 @@ input[type='button'] {
   disply: inline-block;
   width: 70px;
   height: 45px;
+  float: left;
+}
+.menuNav20-20 {
+  text-align: center;
+  padding: 20px;
+  padding-top: 65px;
+  disply: inline-block;
+  width: 160px;
+  height: 95px;
+  float: left;
+}
+.menuNav15-20 {
+  text-align: center;
+  padding: 20px;
+  padding-top: 65px;
+  disply: inline-block;
+  width: 110px;
+  height: 95px;
+  float: left;
+}
+.menuNav11-20 {
+  text-align: center;
+  padding: 20px;
+  padding-top: 65px;
+  disply: inline-block;
+  width: 70px;
+  height: 95px;
   float: left;
 }
 .menuNav8-6 {
