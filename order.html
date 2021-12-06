@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>
+      function   go_zip() {
+        window.open('zipcode.html','ZIP','width=600, height=550, scrollbars=yes');
+      }
+      function setDisplay(){
+        if($('input:radio[id=oldone]').is(':checked')){
+            $('#minimalIn').show();
+        }else{
+            $('#minimalIn').hide();
+        }
+        if($('input:radio[id=newone]').is(':checked')){
+            $('#addressIn').show();
+        }else{
+            $('#addressIn').hide();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="banner">
+        Order
+      </div>
+      <div class="Div60W" style="border-bottom: 4px solid black;">
+				<div class="menuNav20-6">상품명</div>
+        <div class="menuNav20-6">이미지</div>
+        <div class="menuNav20-6">가격</div>
+        <div class="menuNav15-6">수량</div>
+        <div class="menuNav20-6">합계</div>
+      </div>
+      <? include ("order.php"); ?>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

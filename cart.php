@@ -35,7 +35,7 @@ if (!$total) {
 } else {
 
     $counter=0;
-    $totalprice=0;    // 총 구매 금액
+    $totalprice=0;
 
     while ($counter < $total) :
        $pcode = mysqli_result($result, $counter, "pcode");
@@ -53,7 +53,7 @@ if (!$total) {
         <div class='Div200W' style='margin-top:10px;'>
           <div class='menuNav20-20'>$pname</div>
           <div class='cartImageContainer'><img src='$image' id='cart'></div>
-          <div class='menuNav15-20'>$price</div>
+          <div class='menuNav15-20'>$price 원</div>
           <form id='post' method=post action=qmodify.php?code=$pcode>
             <div class='menuNav15-20'>
               <input type=button value='▲' onClick='javascript:this.form.quantity.value++;'>
@@ -62,7 +62,7 @@ if (!$total) {
               <div style='margin-top:20px;'><button type=submit>변경</button></div>
             </div>
           </form>
-          <div class='menuNav15-20'>$subtotalprice</div>
+          <div class='menuNav15-20'>$subtotalprice 원</div>
           <a href=cartdel.php?code=$pcode><div class='menuNav11-20'>삭제</div></a>
         </div>
       ");
@@ -70,7 +70,14 @@ if (!$total) {
   		$counter++;
     endwhile;
 
-     echo("<div>총 구매 금액 : $totalprice</div>");
+    echo("
+      <div style='padding:20px; text-align:center; font-size:25px; font-weight:bold; border-top:4px solid black;'>
+        총 구매 금액 : $totalprice 원
+      </div>
+      <a href=order.html><div class=submit style='margin: 0 auto; margin-top:20px;'>
+        <button id=form type=submit>주문 하기</button>
+      </div></a>
+    ");
 
 }
 

@@ -1,0 +1,138 @@
+<?
+function mysqli_result($res, $row = 0, $col = 0)
+{
+    $nums = mysqli_num_rows($res);
+    if ($nums && $row <= ($nums - 1) && $row >= 0)
+    {
+        mysqli_data_seek($res, $row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col]))
+        {
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
+$UserID = $_COOKIE['UserID'];
+$UserName = $_COOKIE['UserName'];
+$Session = $_COOKIE['Session'];
+if (!isset($UserID)) {
+	echo ("<script>
+		window.alert('로그인 사용자만 이용하실 수 있어요')
+		history.go(-1)
+		</script>");
+	exit;
+}
+
+$con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
+
+$result = mysqli_query($con, "select * from cart where session='$Session'");
+$total = mysqli_num_rows($result);
+
+if (!$total) {
+     echo("<div class='Div60C'>아직 아무도 없나봐요</div>");
+} else {
+
+    $counter=0;
+    $totalprice=0;
+
+    while ($counter < $total) :
+       $pcode = mysqli_result($result, $counter, "pcode");
+       $quantity = mysqli_result($result, $counter, "quantity");
+
+       $subresult = mysqli_query($con, "select * from product where code='$pcode'");
+       $image = mysqli_result($subresult, 0, "image");
+       $pname = mysqli_result($subresult, 0, "name");
+       $price = mysqli_result($subresult, 0, "price");
+
+       $subtotalprice = $quantity * $price;
+       $totalprice = $totalprice + $subtotalprice;
+
+  		echo ("
+        <div class='Div200W' style='margin-top:10px;'>
+          <div class='menuNav20-20'>$pname</div>
+          <div class='cartImageContainer'><img src='$image' id='cart'></div>
+          <div class='menuNav20-20'>$price 원</div>
+          <div class='menuNav15-20'>$quantity</div>
+          <div class='menuNav20-20'>$subtotalprice 원</div>
+        </div>
+      ");
+
+  		$counter++;
+    endwhile;
+
+    echo("
+      <div style='padding:20px; text-align:center; font-size:25px; font-weight:bold; border-top:4px solid black;'>
+        총 구매 금액 : $totalprice 원
+      </div>
+      <form id='post' method=post action=orderProcess.php name=signup>
+        <div style='padding:20px; text-align:center;'>
+          <input type='radio' name='addressSel' id='oldone' value='oldone' onchange='setDisplay()' checked>기존 주소 사용
+          <input type='radio' name='addressSel' id='newone' value='newone' onchange='setDisplay()'>새 주소 입력
+        </div>
+        <div class='Div05W' id='minimalIn'>
+          <div class='inputList'>
+            이름
+          </div>
+          <div class='input'>
+            <input class=text type=text name=name1 size=43 placeholder='이름'>
+          </div>
+          <div class='inputList'>
+            휴대폰 번호
+          </div>
+          <div class='input'>
+            <input class=text type=tel name=phone1 size=43 placeholder='휴대폰 번호'>
+          </div>
+          <div class='inputList'>
+            배송 메모
+          </div>
+          <div class='input'>
+            <input class=text type=text name=message1 size=43 placeholder='예) 부재시 문 앞에 놔주세요.'>
+          </div>
+        </div>
+
+        <div class='Div05W' id='addressIn' style='display:none;'>
+          <div class='inputList'>
+            이름
+          </div>
+          <div class='input'>
+            <input class=text type=text name=name size=43 placeholder='이름'>
+          </div>
+          <div class='inputList'>
+            휴대폰 번호
+          </div>
+          <div class='input'>
+            <input class=text type=tel name=phone size=43 placeholder='휴대폰 번호'>
+          </div>
+          <div class='inputList'>
+            주소
+          </div>
+          <div class='input'>
+            <input class=text type=text name=zip size=6 placeholder='우편번호' readonly=readonly>
+            <a href='javascript:go_zip()'>[우편번호검색]</a>
+          </div>
+          <div class='input'>
+            <input class=text type=text name=addr1 size=43 placeholder='건물 주소' readonly=readonly>
+          </div>
+          <div class='input'>
+            <input class=text type=text name=addr2 size=43 placeholder='상세 주소'>
+          </div>
+          <div class='inputList'>
+            배송 메모
+          </div>
+          <div class='input'>
+            <input class=text type=text name=message size=43 placeholder='예) 부재시 문 앞에 놔주세요.'>
+          </div>
+        </div>
+        <div class=submit style='margin: 0 auto; margin-top:20px;'>
+          <button id=form type=submit>주문 확정</button>
+        </div>
+    </form>
+    ");
+}
+
+mysqli_close($con);
+
+
+?>
