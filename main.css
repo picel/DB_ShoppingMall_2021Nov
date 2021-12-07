@@ -211,7 +211,13 @@ input[type='button'] {
   background-color:black;
   color:white;
   text-align:center;
-  display:inline-block;
+}
+.submitButton2 {
+  padding: 20px;
+  font-size: 20px;
+  background-color:black;
+  color:white;
+  text-align:center;
 }
 .Div05W {
   width: 490px;

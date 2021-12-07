@@ -91,14 +91,14 @@ while ($counter < $total) :
       if ($oldquant - $quantity < 0){
         echo("
       		<script>
-      		window.alert('$pname 상품의 재고가 부족합니다...')
+      		window.alert('구매를 고민하는 사이 $pname 상품을 누가 채갔나봐요...')
       		history.go(-1)
       		</script>
       	");
       	exit;
       }
 
-      mysqli_query($con, "insert into orderlist(id, session, pcode, quantity)   values ('$UserID', '$Session', '$pcode','$quantity')");
+      mysqli_query($con, "insert into orderlist(id, session, pcode, quantity, buydate)   values ('$UserID', '$Session', '$pcode','$quantity', '$buydate')");
       mysqli_query($con, "update product set quantity=$oldquant-$quantity where code='$pcode'");
       $counter++;
 endwhile;

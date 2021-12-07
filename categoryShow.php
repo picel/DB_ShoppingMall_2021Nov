@@ -41,11 +41,16 @@ else
         $name = mysqli_result($result, $newcounter, "name");
         $price = mysqli_result($result, $newcounter, "price");
         $image = mysqli_result($result, $newcounter, "image");
+        $quantity = mysqli_result($result, $newcounter, "quantity");
         echo ("
           <a href=product.html?code=$code>
             <div class='listCol'>
               <div><img src='$image' id='previewC'></div>
-              <div>$name</div>
+              <div>$name
+            ");
+        if ($quantity == 0) echo ("<b>(품절)</b>");
+        echo ("
+              </div>
               <div>$price\</div>
             </div>
           </a>

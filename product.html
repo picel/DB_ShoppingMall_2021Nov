@@ -52,9 +52,21 @@ $image = mysqli_result($result, 0, "image");
           <input type=text class="text" name="quantity" value=1 maxlength=2 size=1 style="width:23px;">
           <input type=button value="▼" onClick="javascript:this.form.quantity.value--;">
         </div>
-        <div class="menuNav38-8">
-          <div class="submitButton"><button id=form type=submit style="font-size:18px;">장바구니 담기</button></div>
-        </div>
+        <? if ($quantity == 0){
+            echo ("
+            <div class='menuNav38-8'>
+              <div class='submitButton' style='background-color:gray;'><button id=form type=submit style='font-size:18px;' disabled>품절</button></div>
+            </div>
+            ");
+          }
+          else{
+            echo ("
+            <div class='menuNav38-8'>
+              <div class='submitButton'><button id=form type=submit style='font-size:18px;'>장바구니 담기</button></div>
+            </div>
+            ");
+          }
+        ?>
         </form>
       </div>
     </div>
