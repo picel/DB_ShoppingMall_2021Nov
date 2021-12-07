@@ -82,12 +82,25 @@ $total = mysqli_num_rows($result);
 $counter=0;
 
 while ($counter < $total) :
-	$pcode = mysqli_result($result, $counter, "pcode");
-    $quantity = mysqli_result($result, $counter, "quantity");
+  	  $pcode = mysqli_result($result, $counter, "pcode");
+      $quantity = mysqli_result($result, $counter, "quantity");
+      $result2 = mysqli_query($con, "select * from product where code='$pcode'");
+      $oldquant = mysqli_result($result2, 0, "quantity");
+      $pname = mysqli_result($result2, 0, "name");
 
-    mysqli_query($con, "insert into orderlist(id, session, pcode, quantity)   values ('$UserID', '$Session', '$pcode','$quantity')");
+      if ($oldquant - $quantity < 0){
+        echo("
+      		<script>
+      		window.alert('$pname 상품의 재고가 부족합니다...')
+      		history.go(-1)
+      		</script>
+      	");
+      	exit;
+      }
 
-    $counter++;
+      mysqli_query($con, "insert into orderlist(id, session, pcode, quantity)   values ('$UserID', '$Session', '$pcode','$quantity')");
+      mysqli_query($con, "update product set quantity=$oldquant-$quantity where code='$pcode'");
+      $counter++;
 endwhile;
 
 mysqli_query($con, "delete from cart where session='$Session'");

@@ -28,19 +28,22 @@ if (!$UserID) {
 $code = $_GET['code'];
 $quantity = $_POST['quantity'];
 
-if ($quantity < 1 || $quantity > 100) {
-	echo ("<script>
-		window.alert('변경하고자 하는 수량이 범위를 초과합니다')
-		history.go(-1)
-		</script>");
-      exit;
-}
-
 if (!isset($quantity)) $quantity = 1;
 
 $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
 $result = mysqli_query($con, "select * from cart where session='$Session' and pcode='$code'");
 $total = mysqli_num_rows($result);
+
+$result2 = mysqli_query($con, "select * from product where code='$code'");
+$oldquant = mysqli_result($result2, 0, "quantity");
+
+if ($oldquant - $quantity < 0) {
+	echo ("<script>
+		window.alert('재고보다 많은 수량을 구매 하실 수 없습니다.')
+		history.go(-1)
+		</script>");
+      exit;
+}
 
 if (isset($total)) $oldnum = mysqli_result($result, 0, "quantity");
 
