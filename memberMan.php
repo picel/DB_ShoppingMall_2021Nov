@@ -15,7 +15,7 @@ if ($mode == 1){
     </script>
   ");
 }
-if ($mode == 2){
+elseif ($mode == 2){
   mysqli_query($con, "update member set isadmin=0 where uid='$uid'");
 
   mysqli_close($con);
@@ -26,7 +26,7 @@ if ($mode == 2){
     </script>
   ");
 }
-if ($mode == 3){
+else {
   mysqli_query($con, "delete from member where uid='$uid'");
 
   mysqli_close($con);
@@ -38,5 +38,13 @@ if ($mode == 3){
   ");
 }
 
-echo ("<meta http-equiv='Refresh' content='0; url=memberShow.html'>");
+if ($mode == 4) {
+  SetCookie("UserID", "", time());
+  SetCookie("UserName", "", time());
+  SetCookie("Session", "", time());
+  echo ("<meta http-equiv='Refresh' content='0; url=index.html'>");
+}
+else {
+  echo ("<meta http-equiv='Refresh' content='0; url=memberShow.html'>");
+}
 ?>

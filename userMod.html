@@ -1,0 +1,122 @@
+<?
+function mysqli_result($res, $row = 0, $col = 0)
+{
+    $nums = mysqli_num_rows($res);
+    if ($nums && $row <= ($nums - 1) && $row >= 0)
+    {
+        mysqli_data_seek($res, $row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col]))
+        {
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+$uid = $_COOKIE['UserID'];
+$con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
+$result = mysqli_query($con, "select * from member where uid='$uid'");
+$uphone = mysqli_result($result, 0, "uphone");
+$umail = mysqli_result($result, 0, "umail");
+$zipcode = mysqli_result($result, 0, "zipcode");
+$addr1 = mysqli_result($result, 0, "addr1");
+$addr2 = mysqli_result($result, 0, "addr2");
+?>
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+    <script>
+        function check_pw(){
+            var pw = document.getElementById('pw').value;
+
+            if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+                if(document.getElementById('pw').value==document.getElementById('pw2').value){
+                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                    document.getElementById('check').style.color='blue';
+                }
+                else{
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+                }
+            }
+        }
+    </script>
+    <script>
+        function id_check() {
+          var id = document.signup.id.value;
+          if (id.length < 5) {
+          	window.alert('ID는 5글자 이상 입력해주세요');
+          }
+          else {
+          	window.open('idCheck.php?id=' + id, 'IDCHECK', 'width=600, height=300');
+          }
+        }
+        function   go_zip() {
+          window.open('zipcode.html','ZIP','width=600, height=550, scrollbars=yes');
+        }
+    </script>
+    <script  src='http://code.jquery.com/jquery-latest.min.js'></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        회원정보 수정
+      </div>
+      <div style="text-align:center;"><a style="color:red; font-size: 25px;">비밀번호는 기존의 값을 입력해도 무관합니다.</a></div>
+      <div class="Div05W">
+        <form id='post' method=post action=userMod.php name=signup>
+          <div>
+            <div class="inputList">
+              비밀번호
+            </div>
+            <div class="input">
+              <input class=text type=password name=password id="pw" onchange="check_pw()" size=43 placeholder="비밀번호">
+            </div>
+            <div class="inputList">
+              비밀번호 확인
+            </div>
+            <div class="input">
+              <input class=text type=password name=password2 id="pw2" onchange="check_pw()" size=43 placeholder="비밀번호 확인">
+            </div>
+            <div class="input"><span id="check"></span></div>
+            <div class="inputList">
+              이메일
+            </div>
+            <div class="input">
+              <input class=text type=email name=email size=43 placeholder="이메일" value="<? echo $umail ?>">
+            </div>
+            <div class="inputList">
+              휴대폰 번호
+            </div>
+            <div class="input">
+              <input class=text type=tel name=phone size=43 placeholder="휴대폰 번호" value="<? echo $uphone ?>">
+            </div>
+            <div class="inputList">
+              주소
+            </div>
+            <div class="input">
+              <input class=text type=text name=zip size=6 placeholder="우편번호" readonly=readonly value="<? echo $zipcode ?>">
+              <a href='javascript:go_zip()'>[우편번호검색]</a>
+            </div>
+            <div class="input">
+              <input class=text type=text name=addr1 size=43 placeholder="건물 주소" readonly=readonly value="<? echo $addr1 ?>">
+            </div>
+            <div class="input">
+              <input class=text type=text name=addr2 size=43 placeholder="상세 주소" value="<? echo $addr2 ?>">
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>회원가입</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

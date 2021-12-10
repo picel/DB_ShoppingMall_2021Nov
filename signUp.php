@@ -17,9 +17,9 @@ mysqli_close($con);
 
 echo("
   <script>
-  window.alert('회원 등록이 정상적으로 처리되었습니다.')
+  window.alert('회원 등록이 정상적으로 처리되었습니다. 로그인 해 주세요.')
   </script>
 ");
 
-echo("<meta http-equiv='Refresh' content='0; url=index.html'>");
+echo("<meta http-equiv='Refresh' content='0; url=signIn.html'>");
 ?>

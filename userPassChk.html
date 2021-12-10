@@ -1,0 +1,35 @@
+<? $mode = $_GET['mode']; ?>
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        비밀번호 확인
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=userPassChk.php?mode=<? echo $mode; ?>>
+          <div>
+            <div class="inputList">
+              비밀번호
+            </div>
+            <div class="input">
+              <input class=text type=password name=pass size=43 placeholder="비밀번호">
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>확인</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>
