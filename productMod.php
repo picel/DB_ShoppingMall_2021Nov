@@ -4,6 +4,7 @@ $price = $_POST['price'];
 $code = $_POST['code'];
 $tmpcode = $_GET['code'];
 $class = $_POST['class'];
+$detail = $_POST['detail'];
 
 if (!$name){
 	echo("
@@ -76,7 +77,7 @@ $fileLink = "https://ShopMall2021NOV.b-cdn.net/$file_name";
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 
-$result = mysqli_query($con, "update product set code='$code', class='$class', name='$name', price=$price, quantity=$quantity, image='$fileLink' where code='$tmpcode'");
+$result = mysqli_query($con, "update product set code='$code', class='$class', name='$name', price=$price, quantity=$quantity, image='$fileLink', detail='$detail' where code='$tmpcode'");
 
 mysqli_close($con);
 

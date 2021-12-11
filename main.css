@@ -18,6 +18,12 @@ button {
   font-family: 'OTWelcomeRA';
   line-height: 1.5;
 }
+textarea {
+  resize: none;
+  height: 200px;
+  width: 467px;
+  border: 0px;
+}
 button#form {
   height:100%;
   width:100%;
@@ -399,6 +405,14 @@ input[type='button'] {
 .copyright {
   padding: 10px;
   width: 980px;
+}
+.detailWrap {
+  width: 940px;
+  padding: 20px;
+  text-align: left;
+  font-size: 20px;
+  border-top: 4px solid black;
+  margin: 0 auto;
 }
 @font-face {
   font-family: "OTWelcomeRA";

@@ -25,6 +25,7 @@ $name = mysqli_result($result, 0, "name");
 $price = mysqli_result($result, 0, "price");
 $quantity = mysqli_result($result, 0, "quantity");
 $image = mysqli_result($result, 0, "image");
+$detail = mysqli_result($result, 0, "detail");
 ?>
 
 <!DOCTYPE HTML>
@@ -68,6 +69,14 @@ $image = mysqli_result($result, 0, "image");
           }
         ?>
         </form>
+      </div>
+    </div>
+    <div style="outerDiv">
+      <div class="Div100LB" style="margin:0 auto;">
+        상품 상세 설명
+      </div>
+      <div class="detailWrap">
+        <? echo $detail; ?>
       </div>
     </div>
   </body>
