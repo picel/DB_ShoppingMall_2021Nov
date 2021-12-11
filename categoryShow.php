@@ -45,7 +45,9 @@ else
         echo ("
           <a href=product.html?code=$code>
             <div class='listCol'>
-              <div><img src='$image' id='previewC'></div>
+            <div><img src='$image' id='previewC'");
+            if ($quantity == 0) echo ("class='brightness'");
+            echo("></div>
               <div>$name
             ");
         if ($quantity == 0) echo ("<b>(품절)</b>");

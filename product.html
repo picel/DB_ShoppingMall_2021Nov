@@ -38,7 +38,10 @@ $detail = mysqli_result($result, 0, "detail");
     <? include ("top.html"); ?>
     <div class="outerDiv" style='height:600px;'>
       <div class="leftDiv">
-        <? echo ("<img src='$image' id='productpg'>"); ?>
+        <? echo ("<img src='$image' id='productpg'");
+          if ($quantity == 0) echo ("class='brightness'");
+          echo (">");
+        ?>
       </div>
       <div class="rightDiv">
         <div style="height:285px; width:380px;">

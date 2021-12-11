@@ -415,6 +415,9 @@ input[type='button'] {
   padding: 10px;
   width: 980px;
 }
+.brightness {
+  -webkit-filter: brightness(0.30);filter: brightness(0.30);
+}
 .detailWrap {
   width: 920px;
   padding: 30px;
