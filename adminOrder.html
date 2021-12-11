@@ -1,0 +1,22 @@
+<? $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall"); ?>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); include("adminbanner.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        주문 내역
+      </div>
+      <div style="border-top: 4px solid black; height:auto;">
+        <? include ("adminOrder.php"); ?>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

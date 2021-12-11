@@ -1,5 +1,19 @@
 <?
-$result = mysqli_query($con, "select * from receivers where id='$UserID'");
+function mysqli_result($res, $row = 0, $col = 0)
+{
+    $nums = mysqli_num_rows($res);
+    if ($nums && $row <= ($nums - 1) && $row >= 0)
+    {
+        mysqli_data_seek($res, $row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col]))
+        {
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+$result = mysqli_query($con, "select * from receivers");
 $total = mysqli_num_rows($result);
 
 
@@ -32,7 +46,7 @@ else{
       <div style='display:inline-block;'>
       ");
       $newcounter = 0;
-      $result2 = mysqli_query($con, "select * from orderlist where buydate='$buydate' and id='$rid'");
+      $result2 = mysqli_query($con, "select * from orderlist where buydate='$buydate' and id='$rid' order by '$buydate' desc");
       $total2 = mysqli_num_rows($result2);
       while ($newcounter < $total2):
         $pcode = mysqli_result($result2, $newcounter, "pcode");
@@ -52,35 +66,34 @@ else{
         $newcounter++;
         $totalSum += $subSum;
       endwhile;
-      echo("
+    echo("
+      </div>
+      <div style='padding: 20px; text-align:center;'>총 결제 금액 : $totalSum 원</div>
+      <div style='height:80px; border-top: 2px solid black;'>
+        <div style='display:inline-block; float:left; padding:21px; border-right:2px solid black;'>
+          $rname ($rid)<br>$rphone
         </div>
-        <div style='padding: 20px; text-align:center;'>총 결제 금액 : $totalSum 원</div>
-        <div style='height:80px; border-top: 2px solid black;'>
-          <div style='display:inline-block; float:left; padding:21px; border-right:2px solid black;'>
-            $rname<br>$rphone
-          </div>
-          <div style='display:inline-block; float:left; padding:21px;'>
-            $raddr<br>$memo
-          </div>
-          <div style='display:inline-block; float:right; padding:31px; border-left:2px solid black;'>
-        ");
-        if ($status == 0) {
-          echo ("<div>취소 접수 완료</div>");
-        }
-        elseif ($status == 1 || $status == 2) {
-          echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=3><div>주문 취소</div></a>");
-        }
-        elseif ($status == 3) {
-          echo ("<div>취소 불가</div>");
-        }
-        elseif ($status == 10) {
-          echo ("<div>취소 완료</div>");
-        }
-      echo("
-          </div>
+        <div style='display:inline-block; float:left; padding:21px;'>
+          $raddr<br>$memo
+        </div>
+        <div style='display:inline-block; float:right; padding:20px; height: 40px; border-left:2px solid black;'>
+      ");
+      if ($status == 0) {
+        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=0><div>반품 처리하기</div></a>");
+        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>");
+      }
+      elseif ($status == 1) {
+        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>");
+      }
+      elseif ($status == 2) {
+        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=2><div>발송 완료로 변경</div></a>");
+      }
+    echo("
         </div>
       </div>
-        ");
+    </div>
+      ");
+
     $counter++;
   endwhile;
 }
