@@ -24,6 +24,7 @@ else{
     $buydate = mysqli_result($result, $counter, "buydate");
     $rname = mysqli_result($result, $counter, "sender");
     $rid = mysqli_result($result, $counter, "id");
+    $receiver = mysqli_result($result, $counter, "receiver");
     $rphone = mysqli_result($result, $counter, "phone");
     $raddr = mysqli_result($result, $counter, "address");
     $status = mysqli_result($result, $counter, "status");
@@ -71,25 +72,32 @@ else{
       <div style='padding: 20px; text-align:center;'>총 결제 금액 : $totalSum 원</div>
       <div style='height:80px; border-top: 2px solid black;'>
         <div style='display:inline-block; float:left; padding:21px; border-right:2px solid black;'>
-          $rname ($rid)<br>$rphone
+          $receiver ($rid)<br>$rphone
         </div>
         <div style='display:inline-block; float:left; padding:21px;'>
           $raddr<br>$memo
         </div>
-        <div style='display:inline-block; float:right; padding:20px; height: 40px; border-left:2px solid black;'>
       ");
       if ($status == 0) {
-        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=0><div>반품 처리하기</div></a>");
-        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>");
+        echo ("
+        <div style='display:inline-block; float:right; padding:20px; height: 40px; border-left:2px solid black;'>
+          <a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=0><div>반품 처리하기</div></a>
+          <a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>
+        </div>");
       }
       elseif ($status == 1) {
-        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>");
+        echo ("
+        <div style='display:inline-block; float:right; padding:20px; height: 40px; border-left:2px solid black;'>
+          <a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=1><div>발송 준비로 변경</div></a>
+        </div>");
       }
       elseif ($status == 2) {
-        echo ("<a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=2><div>발송 완료로 변경</div></a>");
+        echo ("
+        <div style='display:inline-block; float:right; padding:20px; height: 40px; border-left:2px solid black;'>
+          <a href=orderMan.php?id=$rid&buydate=". htmlentities(urlencode($buydate)). "&code=2><div>발송 완료로 변경</div></a>
+        </div>");
       }
     echo("
-        </div>
       </div>
     </div>
       ");

@@ -10,6 +10,7 @@ else{
     $buydate = mysqli_result($result, $counter, "buydate");
     $rname = mysqli_result($result, $counter, "sender");
     $rid = mysqli_result($result, $counter, "id");
+    $receiver = mysqli_result($result, $counter, "receiver");
     $rphone = mysqli_result($result, $counter, "phone");
     $raddr = mysqli_result($result, $counter, "address");
     $status = mysqli_result($result, $counter, "status");
@@ -57,7 +58,7 @@ else{
         <div style='padding: 20px; text-align:center;'>총 결제 금액 : $totalSum 원</div>
         <div style='height:80px; border-top: 2px solid black;'>
           <div style='display:inline-block; float:left; padding:21px; border-right:2px solid black;'>
-            $rname<br>$rphone
+            $receiver<br>$rphone
           </div>
           <div style='display:inline-block; float:left; padding:21px;'>
             $raddr<br>$memo
