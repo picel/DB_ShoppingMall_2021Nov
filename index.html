@@ -3,12 +3,24 @@
   <head>
     <link rel="stylesheet" href="main.css" type="text/css">
     <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
   </head>
   <body>
     <? include ("top.html"); ?>
     <div class="outerDiv">
       <div class="adContainer">
-        Product ad container
+        <div class="slider">
+        <img src="https://ShopMall2021NOV.b-cdn.net/ad/bonobono.jpeg" alt="no" id="ad">
+        <img src="https://ShopMall2021NOV.b-cdn.net/ad/magSafe.jpeg" alt="no" id="ad">
+        <img src="https://ShopMall2021NOV.b-cdn.net/ad/Razer.jpeg" alt="no" id="ad">
+      </div>
       </div>
       <div class="Div60C" style="border-bottom: 4px solid black; border-top: 4px solid black;">
         BestSeller
