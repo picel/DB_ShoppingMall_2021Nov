@@ -240,6 +240,13 @@ input[type='button'] {
   font-size: 25px;
   border-top: 4px solid black;
 }
+.Div60LB {
+  width: 950px;
+  padding: 15px;
+  text-align: left;
+  font-size: 20px;
+  border-top: 4px solid black;
+}
 .Div60W {
   width: 980px;
   height: 60px;
@@ -407,8 +414,8 @@ input[type='button'] {
   width: 980px;
 }
 .detailWrap {
-  width: 940px;
-  padding: 20px;
+  width: 920px;
+  padding: 30px;
   text-align: left;
   font-size: 20px;
   border-top: 4px solid black;

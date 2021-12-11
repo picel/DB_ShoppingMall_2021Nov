@@ -1,4 +1,20 @@
-<? $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall"); ?>
+<?
+  function mysqli_result($res, $row = 0, $col = 0)
+  {
+      $nums = mysqli_num_rows($res);
+      if ($nums && $row <= ($nums - 1) && $row >= 0)
+      {
+          mysqli_data_seek($res, $row);
+          $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+          if (isset($resrow[$col]))
+          {
+              return $resrow[$col];
+          }
+      }
+      return false;
+  }
+  $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
+?>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -15,15 +31,25 @@
         등록된 상품 수 :
         <?
           $result = mysqli_query($con, "select * from product");
-          echo mysqli_num_rows($result);
-        ?>개<br><br>
+          $total = mysqli_num_rows($result);
+          echo $total;
+        ?> 개<br><br>
         판매된 상품 수 :
-        <br><br>
+        <?
+          $counter=0;
+          $sum = 0;
+          while ($counter < $total) :
+            $sold = mysqli_result($result, $counter, "sold");
+            $sum = $sum + $sold;
+            $counter++;
+          endwhile;
+          echo $sum;
+        ?> 개<br><br>
         가입된 회원 수 :
         <?
           $result = mysqli_query($con, "select * from member");
           echo mysqli_num_rows($result);
-        ?>명
+        ?> 명
       </div>
     </div>
   </body>

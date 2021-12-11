@@ -87,6 +87,7 @@ while ($counter < $total) :
       $result2 = mysqli_query($con, "select * from product where code='$pcode'");
       $oldquant = mysqli_result($result2, 0, "quantity");
       $pname = mysqli_result($result2, 0, "name");
+      $sold = mysqli_result($result2, 0, "sold");
 
       if ($oldquant - $quantity < 0){
         echo("
@@ -100,6 +101,7 @@ while ($counter < $total) :
 
       mysqli_query($con, "insert into orderlist(id, session, pcode, quantity, buydate)   values ('$UserID', '$Session', '$pcode','$quantity', '$buydate')");
       mysqli_query($con, "update product set quantity=$oldquant-$quantity where code='$pcode'");
+      mysqli_query($con, "update product set sold=$sold+$quantity where code='$pcode'");
       $counter++;
 endwhile;
 

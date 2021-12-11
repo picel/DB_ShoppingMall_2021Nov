@@ -77,7 +77,7 @@ $fileLink = "https://ShopMall2021NOV.b-cdn.net/$file_name";
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 
-$result = mysqli_query($con, "insert into product(code, class, name, price, quantity, image, date, detail) values ('$code', '$class', '$name', $price, $quantity, '$fileLink', '$date', '$detail')");
+$result = mysqli_query($con, "insert into product(code, class, name, price, quantity, sold, image, date, detail) values ('$code', '$class', '$name', $price, $quantity, 0, '$fileLink', '$date', '$detail')");
 
 mysqli_close($con);
 
