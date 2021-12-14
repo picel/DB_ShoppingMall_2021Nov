@@ -69,14 +69,14 @@ else
   $startpage = ($cblock - 1) * $blocksize + 1;
   $pstartpage = $startpage - 1;
   $nstartpage = $startpage + $blocksize;
-  if ($pblock > 0) echo ("[<a href=productMan.html?key=$key&cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
+  if ($pblock > 0) echo ("[<a href=search.html?key=$key&cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
   $i = $startpage;
   while ($i < $nstartpage):
       if ($i > $totalpage) break;
-      echo ("[<a href=productMan.html?key=$key&cblock=$cblock&cpage=$i>$i</a>]");
+      echo ("[<a href=search.html?key=$key&cblock=$cblock&cpage=$i>$i</a>]");
       $i = $i + 1;
   endwhile;
-  if ($nstartpage <= $totalpage) echo ("[<a href=productMan.html?key=$key&cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
+  if ($nstartpage <= $totalpage) echo ("[<a href=search.html?key=$key&cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
   echo("</div>");
 }
 ?>
