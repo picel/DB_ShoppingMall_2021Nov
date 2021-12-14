@@ -61,7 +61,17 @@ $addr2 = mysqli_result($result, 0, "addr2");
       </div>
       <div style="border-top: 4px solid black; height:auto;">
         <? include ("orderlist.php"); ?>
+      </div><br><br>
+      <div class="Div60LB" style="margin:0 auto;">
+        리뷰
       </div>
+      <div class="Div60W" style="background-color:black; color:white; margin:0 auto;">
+        <div class="menuNav20-6">제품명</div>
+        <div class="menuNav40-6">제목</div>
+        <div class="menuNav18-6">별점</div>
+        <div class="menuNav20-6">작성일자</div>
+      </div>
+      <? include ("userReview.php"); ?>
 		</div>
   </body>
   <footer>

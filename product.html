@@ -84,8 +84,13 @@ $detail = mysqli_result($result, 0, "detail");
       <div class="Div60LB" style="margin:0 auto;">
         리뷰
       </div>
-      <div class="detailWrap">
+      <div class="Div60W" style="background-color:black; color:white; margin:0 auto;">
+        <div class="menuNav20-6">작성자</div>
+        <div class="menuNav40-6">제목</div>
+        <div class="menuNav18-6">별점</div>
+        <div class="menuNav20-6">작성일자</div>
       </div>
+      <? include ("productReview.html"); ?>
     </div>
   </body>
   <footer>

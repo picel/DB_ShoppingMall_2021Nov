@@ -1,0 +1,58 @@
+<?
+  $code = $_GET['code'];
+  $writer = $_GET['id'];
+  $buydate = $_GET['buydate'];
+?>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        상품 리뷰
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=review.php?<? echo ("code=$code&writer=$writer&buydate=". htmlentities(urlencode($buydate)).""); ?>>
+          <div>
+            <div style="padding:10px;">
+              <? echo $_GET['name']; ?> 리뷰
+            </div>
+            <div class="inputList">
+              제목
+            </div>
+            <div class="input">
+              <input class=text type=text name=title size=43 placeholder="제목">
+            </div>
+            <div class="inputList">
+              내용
+            </div>
+            <div class="input">
+              <textarea name=content rows=20 cols=65 placeholder="내용"></textarea>
+            </div>
+            <div style="text-align:center; margin:30px;">
+              제품 만족도
+            </div>
+            <div style="text-align:center; margin:30px;">
+                <input type="radio" value="1" name="score"> 1
+                <input type="radio" value="2" name="score"> 2
+                <input type="radio" value="3" name="score" checked> 3
+                <input type="radio" value="4" name="score"> 4
+                <input type="radio" value="5" name="score"> 5
+            </div>
+          </div>
+          <div class=submit>
+            <button id=form type=submit>리뷰 작성</button>
+          </div>
+        </form>
+      </div>
+      <a href=findAccount.html><div style='text-align:center; margin-top:30px;'>혹시 아이디 비밀번호를 분실하셨나요?<div></a>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

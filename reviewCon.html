@@ -1,0 +1,56 @@
+<?
+  function mysqli_result($res, $row = 0, $col = 0)
+  {
+      $nums = mysqli_num_rows($res);
+      if ($nums && $row <= ($nums - 1) && $row >= 0)
+      {
+          mysqli_data_seek($res, $row);
+          $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+          if (isset($resrow[$col]))
+          {
+              return $resrow[$col];
+          }
+      }
+      return false;
+  }
+  $code = $_GET['code'];
+  $date = $_GET['date'];
+  $writer = $_COOKIE['UserID'];
+
+  $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
+  $result = mysqli_query($con, "select * from review where writer='$writer' and code='$code' and date='$date'");
+
+  $title = mysqli_result($result, 0, "title");
+  $content = mysqli_result($result, 0, "content");
+  $score = mysqli_result($result, 0, "score");
+?>
+
+<link rel="stylesheet" href="main.css" type="text/css">
+<div class="popUpBanner">
+  리뷰 자세히 보기
+</div>
+<div>
+  <div style='font-size:30px; margin:30px; display:inline-block;'>
+    <? echo $title; ?>
+  </div>
+  <div style='margin:30px; display:inline-block; float:right;'>
+    작성일 : <? echo $date; ?>
+  </div>
+</div>
+<div style='margin:30px; margin-top:0px; font-size:20px;'>
+  <? echo $content; ?>
+</div>
+<div style='margin:30px; font-size:20px;'>
+  <?
+    $counter = 0;
+    while($counter < $score){
+      echo("★");
+      $counter++;
+    }
+    $counter2 = 0;
+    while($counter2 < (5 - $counter)){
+      echo ("☆");
+      $counter2++;
+    }
+  ?>
+</div>

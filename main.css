@@ -298,6 +298,14 @@ input[type='button'] {
   width: 340px;
   float: left;
 }
+.menuNav18-6 {
+  text-align: center;
+  padding: 20px;
+  disply: inline-block;
+  width: 140px;
+  height: 20px;
+  float: left;
+}
 .menuNav20-6 {
   text-align: center;
   padding: 20px;
@@ -311,6 +319,14 @@ input[type='button'] {
   padding: 20px;
   disply: inline-block;
   width: 260px;
+  height: 20px;
+  float: left;
+}
+.menuNav40-6 {
+  text-align: center;
+  padding: 20px;
+  disply: inline-block;
+  width: 360px;
   height: 20px;
   float: left;
 }

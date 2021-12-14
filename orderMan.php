@@ -50,5 +50,17 @@ if ($code == 3){
     <meta http-equiv='Refresh' content='0; url=myPage.html'>
   ");
 }
+elseif ($code == 4){
+  mysqli_query($con, "update receivers set status=100 where id='$id' and buydate='$buydate'");
+
+  mysqli_close($con);
+
+  echo("
+    <script>
+      window.alert('상품 수령 확인이 완료되었습니다.')
+    </script>
+    <meta http-equiv='Refresh' content='0; url=myPage.html'>
+  ");
+}
 echo ("<meta http-equiv='Refresh' content='0; url=adminOrder.html'>");
 ?>
