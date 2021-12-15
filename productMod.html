@@ -85,7 +85,7 @@ $detail = mysqli_result($result, 0, "detail");
           상품 설명
         </div>
         <div class="input">
-          <textarea name=detail rows=20 cols=65 placeholder="상품 설명"></textarea>
+          <textarea name=detail rows=20 cols=65 placeholder="상품 설명"><? echo $detail; ?></textarea>
         </div>
         <div class=submit>
           <button id=form type=submit>상품 수정</button>

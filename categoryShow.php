@@ -34,8 +34,8 @@ else
   $counter = 0;
   echo ("<div class='listWrap'>");
   while ($counter < $pagesize):
+      $newcounter = ($cpage - 1) * $pagesize + $counter;
       do {
-        $newcounter = ($cpage - 1) * $pagesize + $counter;
         if ($newcounter == $total) break;
         $code = mysqli_result($result, $newcounter, "code");
         $name = mysqli_result($result, $newcounter, "name");
@@ -58,6 +58,7 @@ else
           </a>
         ");
         $counter = $counter + 1;
+        $newcounter = $newcounter +1;
       } while ($newcounter % 4 != 0);
       if ($newcounter == $total) break;
   endwhile;
@@ -71,14 +72,14 @@ else
   $startpage = ($cblock - 1) * $blocksize + 1;
   $pstartpage = $startpage - 1;
   $nstartpage = $startpage + $blocksize;
-  if ($pblock > 0) echo ("[<a href=category.html?cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
+  if ($pblock > 0) echo ("[<a href=category.html?class=$class&cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
   $i = $startpage;
   while ($i < $nstartpage):
       if ($i > $totalpage) break;
-      echo ("[<a href=category.html?cblock=$cblock&cpage=$i>$i</a>]");
+      echo ("[<a href=category.html?class=$class&cblock=$cblock&cpage=$i>$i</a>]");
       $i = $i + 1;
   endwhile;
-  if ($nstartpage <= $totalpage) echo ("[<a href=category.html?cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
+  if ($nstartpage <= $totalpage) echo ("[<a href=category.html?class=$class&ssssssssssssssssscblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
   echo("</div>");
 }
 ?>

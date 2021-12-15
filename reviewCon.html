@@ -15,7 +15,8 @@
   }
   $code = $_GET['code'];
   $date = $_GET['date'];
-  $writer = $_COOKIE['UserID'];
+  if (isset($_GET['writer'])) $writer = $_GET['writer'];
+  else $writer = $_COOKIE['UserID'];
 
   $con = mysqli_connect("localhost", "root", "kyle0908", "shopmall");
   $result = mysqli_query($con, "select * from review where writer='$writer' and code='$code' and date='$date'");

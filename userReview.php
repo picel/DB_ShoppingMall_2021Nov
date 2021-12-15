@@ -7,7 +7,7 @@ $total = mysqli_num_rows($result);
 
 if (!$total)
 {
-  echo ("<div class='Div60C'>아직 아무도 없나봐요.</div>");
+  echo ("<div class='Div60C' style='margin:0 auto;'>아직 아무도 없나봐요.</div>");
 }
 else
 {
@@ -29,7 +29,7 @@ else
       echo ("
       <div class='Div60W' style='margin-top:10px;margin:0 auto;'>
         <div class='menuNav20-6'>$name</div>
-        <a href='javascript:content()'><div class='menuNav40-6'>$title</div></a>
+        <a href='javascript:content(`$code`,`$date`)'><div class='menuNav40-6'>$title</div></a>
         <div class='menuNav18-6'>");
         $tempA = 0;
         while($tempA < $score){
@@ -46,8 +46,9 @@ else
         <div class='menuNav20-6'>$date</div>
       </div>
       <script>
-        function content() {
-          window.open('reviewCon.html?code=$code&date=$date', 'review_content', 'width=600, height=550, scrollbars=yes');
+        function content(code, date) {
+          var url = 'reviewCon.html?code=' + code + '&date=' + date;
+          window.open(url, 'review_content', 'width=600, height=550, scrollbars=yes');
         }
       </script>
       ");
