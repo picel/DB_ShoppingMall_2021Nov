@@ -24,6 +24,18 @@ textarea {
   width: 467px;
   border: 0px;
 }
+textarea#contents {
+  resize: none;
+  height: 400px;
+  width: 467px;
+  border: 0px;
+}
+textarea#comment {
+  resize: none;
+  height: 100px;
+  width: 950px;
+  border: 2px solid black;
+}
 button#form {
   height:100%;
   width:100%;

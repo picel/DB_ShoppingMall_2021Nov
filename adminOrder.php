@@ -41,6 +41,7 @@ else{
     elseif ($status == 2) echo("발송 준비중");
     elseif ($status == 3) echo("발송 완료");
     elseif ($status == 10) echo("취소 완료");
+    elseif ($status == 100) echo("수령 확인");
     echo("
         </div>
       </div>

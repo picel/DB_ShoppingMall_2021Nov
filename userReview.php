@@ -22,7 +22,7 @@ else
       if ($newcounter == $total) break;
       $code = mysqli_result($result, $newcounter, "code");
       $result2 = mysqli_query($con, "select * from product where code='$code'");
-      $name = mysqli_result($result2, $newcounter, "name");
+      $name = mysqli_result($result2, 0, "name");
       $title = mysqli_result($result, $newcounter, "title");
       $date = mysqli_result($result, $newcounter, "date");
       $score = mysqli_result($result, $newcounter, "score");

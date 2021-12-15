@@ -1,0 +1,154 @@
+<?
+function mysqli_result($res,$row=0,$col=0)
+{
+	$nums=mysqli_num_rows($res);
+	if($nums && $row<=($nums-1) && $row>=0)
+	{
+		mysqli_data_seek($res,$row);
+		$resrow=(is_numeric($col))?mysqli_fetch_row($res):mysqli_fetch_assoc($res);
+		if(isset($resrow[$col]))
+		{
+			return $resrow[$col];
+		}
+	}
+	return false;
+}
+
+$id = $_GET['id'];
+$editCom = $_GET['num'];
+$uid = $_COOKIE['UserID'];
+
+$con = mysqli_connect("localhost","root","kyle0908", "shopmall");
+$result = mysqli_query($con, "select * from qna where id='$id'");
+$result2 = mysqli_query($con, "select * from reply where id='$id'");
+$total = mysqli_num_rows($result2);
+
+$islocked = mysqli_result($result, 0, "islocked");
+$writer = mysqli_result($result, 0, "writer");
+$topic = mysqli_result($result, 0, "topic");
+$content = mysqli_result($result, 0, "content");
+$file = mysqli_result($result, 0, "file");
+$wdate = mysqli_result($result, 0, "wdate");
+$hit = mysqli_result($result, 0, "hit");
+
+if ($islocked == 1 && $_COOKIE['isadmin'] != 1 && $writer != $uid){
+  echo("<script>
+    window.alert('관리자 혹은 본인만 접근 할 수 있는 페이지입니다.')
+    history.go(-1)
+    </script> ");
+   exit;
+}
+?>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        QnA
+      </div>
+      <div style='margin:5px;'>
+  		  <div style='display:inline-block; padding-left:20px;'>
+  		    <h3><? echo $topic; ?></h3>
+  		  </div>
+        <?
+          if ($uid == $writer || $isadmin == 1){
+            echo("
+            <div style='display:inline-block; float:right;'>");
+              if($uid == $writer){
+                echo("<div style='margin:10px; float:right;'><a href=qnaMod.html?id=$id class='fas fa-edit'> 수정</a></div>");
+              }
+              echo("
+              <div style='margin:10px; float:right;'><a href=qnaDel.html?id=$id class='fas fa-trash'> 삭제</a></div>
+            </div>
+            ");
+          }
+        ?>
+  		</div>
+  		<div style='margin-top:5px; margin-bottom:20px; padding:25px;'><pre><? echo $content; ?></pre></div>
+      <?
+        if ($file != null){
+        	echo("<div style='padding:25px;'><a href=$file class='fas fa-file'> 첨부파일</a></div>");
+        }
+      ?>
+  		<div style='border-top:2px solid #011640; height:60px;'>
+  			<div class='menuNav11-6'>번호 : <? echo $id; ?></div>
+  		  <div class='menuNav30-6'>글쓴이 : <? echo $writer; ?></div>
+  		  <div class='menuNav20-6'>날짜 : <? echo $wdate; ?></div>
+  		  <div class='menuNav15-6'>조회 : <? echo $hit; ?></div>
+  		</div>
+  	</div>
+    <?
+      if ($total != 0){
+        echo("<div class='outerDiv' style='border-top:2px solid black;'>");
+        $counter = 0;
+        while($counter<$total):
+      		$writer=mysqli_result($result2,$counter,"writer");
+      		$content=mysqli_result($result2,$counter,"content");
+      		$wdate=mysqli_result($result2,$counter,"wdate");
+      		$num=mysqli_result($result2,$counter,"num");
+      		$edit=mysqli_result($result2,$counter,"edited");
+          $admin=mysqli_result($result2,$counter,"admin");
+          if ($editCom == $num) {
+            echo("<div style='padding:15px; background-color:lightgray;'>");
+            $editCon = $content;
+            $editNum = $num;
+          }
+          else echo("<div style='padding:15px;'>");
+          echo("
+      			<div style='margin-bottom:10px;'>
+      				<div style='display:inline-block;'><span style='font:bold; font-size:20px;'>$writer
+          ");
+          if ($admin == 1) echo("(관리자)");
+          echo("
+          </span></div>
+      				<div style='display:inline-block; float:right;'>$wdate
+      		");
+
+      		if ($edit == 1) {
+      			echo ("(수정됨)");
+      		}
+      		echo("
+      				</div>
+      			</div>
+      			<div>
+      				<div style='width:650px; display:inline-block;'>$content</div>
+          ");
+          if ($uid == $writer || $isadmin == 1){
+            echo("
+        				<div style='float:right; display:inline-block;'>
+        					<a href=cmtDel.php?num=$num&id=$id text-align=right class='fas fa-trash'> 삭제</a>
+        		");
+            if ($uid == $writer){
+              echo("&nbsp;<a href=cmtMod.html?num=$num&id=$id text-align=right class='fas fa-edit'> 수정</a>");
+            }
+            echo("</div>");
+          }
+          echo("</div></div>");
+      		$counter++;
+      	endwhile;
+      	echo("</div>");
+      }
+    ?>
+    <div class="outerDiv">
+      <div class="Div60LB" style="margin:0 auto; border-top:2px solid black;">
+        댓글 수정
+      </div>
+      <form id='comment' method=post action=cmtMod.php?id=<? echo $id ?>&num=<? echo $editNum ?>>
+				<div style='padding:10px;'><textarea id='comment' name=content rows=8 cols=100 placeholder="댓글 입력"><? echo $editCon; ?></textarea></div>
+				<div>
+					<div style='width:120px; display:inline-block;'></div>
+					<div style='text-align:center; width:500px; display:inline-block;'><button type='submit' class='fas fa-pen'> 입력</button></div>
+					<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
+				</div>
+			</form>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>

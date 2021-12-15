@@ -1,0 +1,82 @@
+<?
+function mysqli_result($res,$row=0,$col=0)
+{
+	$nums=mysqli_num_rows($res);
+	if($nums && $row<=($nums-1) && $row>=0)
+	{
+		mysqli_data_seek($res,$row);
+		$resrow=(is_numeric($col))?mysqli_fetch_row($res):mysqli_fetch_assoc($res);
+		if(isset($resrow[$col]))
+		{
+			return $resrow[$col];
+		}
+	}
+	return false;
+}
+
+$id = $_GET['id'];
+
+$con = mysqli_connect("localhost","root","kyle0908", "shopmall");
+$result = mysqli_query($con, "select * from qna where id=$id");
+
+$topic = mysqli_result($result,0,"topic");
+$content = mysqli_result($result,0,"content");
+?>
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <script src="https://kit.fontawesome.com/ce77ac93cc.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.tiny.cloud/1/cjbns9pbqu21lwhyn0375qxa6pzdglcrvtddly0lmdsfauo9/tinymce/5/tinymce.min.js' referrerpolicy='origin'></script>
+    <script>
+        tinymce.init({
+          selector: 'textarea#contents'
+        });
+    </script>
+  </head>
+  <body>
+    <? include ("top.html"); ?>
+    <div class="outerDiv">
+      <div class="Div100LB">
+        질문 등록
+      </div>
+      <div class="Div05W">
+        <form id='post' method=post action=qnaIn.php  enctype='multipart/form-data'>
+        <div class="inputList" style="display:inline-block; width:200px;">
+          제목
+        </div>
+        <div class="input">
+          <? echo ("<input class=text type=text name=topic size=43 placeholder='제목' value='$topic'>"); ?>
+        </div>
+        <div class="inputList">
+          첨부파일
+        </div>
+        <div class="input" style="color:gray;">
+          <label for="ex_file" class="fas fa-file" style='font-size:18px;'>첨부파일</label>
+  				<input type=file id=ex_file name=userfile size=45 maxlength=80>
+        </div>
+        <div class="inputList">
+          내용
+        </div>
+        <div class="input">
+          <textarea id='contents' name=content rows=40 cols=65 placeholder="내용"><? echo $content; ?></textarea>
+        </div>
+        <div class="inputList" style="display:inline-block;">
+          이 글을 관리자에게만 보이게 하시겠습니까?
+        </div>
+        <div class="input" style="text-align:center;">
+          <input type="radio" name="islocked" value="1">예
+          <input type="radio" name="islocked" value="0" checked="checked">아니오
+        </div>
+        <div class=submit>
+          <button id=form type=submit>질문 등록</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <? include ("bottom.html"); ?>
+  </footer>
+</html>
