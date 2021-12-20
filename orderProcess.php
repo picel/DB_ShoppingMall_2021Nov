@@ -45,6 +45,7 @@ if($mode == 'newone') {
   $zip = mysqli_result($result, 0, "zipcode");
   $addr1 = mysqli_result($result, 0, "addr1");
   $addr2 = mysqli_result($result, 0, "addr2");
+  $point = mysqli_result($result, 0, "point");
 }
 
 if (!$receiver){
@@ -81,6 +82,8 @@ $total = mysqli_num_rows($result);
 
 $counter=0;
 
+$totalPrice = 0;
+
 while ($counter < $total) :
   	  $pcode = mysqli_result($result, $counter, "pcode");
       $quantity = mysqli_result($result, $counter, "quantity");
@@ -88,6 +91,9 @@ while ($counter < $total) :
       $oldquant = mysqli_result($result2, 0, "quantity");
       $pname = mysqli_result($result2, 0, "name");
       $sold = mysqli_result($result2, 0, "sold");
+      $price = mysqli_result($result2, 0, "price");
+
+      $totalPrice = $totalPrice + ($price * $quantity);
 
       if ($oldquant - $quantity < 0){
         echo("
@@ -105,7 +111,10 @@ while ($counter < $total) :
       $counter++;
 endwhile;
 
+$newPoint = $totalPrice / 100;
+
 mysqli_query($con, "delete from cart where session='$Session'");
+mysqli_query($con, "update member set point=$point+$newPoint where uid='$UserID'");
 
 mysqli_close($con);
 

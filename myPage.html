@@ -31,6 +31,7 @@ $umail = mysqli_result($result, 0, "umail");
 $zipcode = mysqli_result($result, 0, "zipcode");
 $addr1 = mysqli_result($result, 0, "addr1");
 $addr2 = mysqli_result($result, 0, "addr2");
+$point = mysqli_result($result, 0, "point");
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -55,6 +56,9 @@ $addr2 = mysqli_result($result, 0, "addr2");
           <a href=userPassChk.html?mode=0><div class='submitButton2'>회원정보 수정</div></a><br>
           <a href=userPassChk.html?mode=1><div class='submitButton2'>회원 탈퇴</div></a>
         </div>
+      </div>
+      <div class="Div60LB" style="border-top: 0px;">
+        포인트 : <? echo $point; ?> pt
       </div>
       <div class="Div100LB">
         주문 내역
