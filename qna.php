@@ -45,12 +45,15 @@ else
       $wdate = mysqli_result($result, $newcounter, "wdate");
       $hit = mysqli_result($result, $newcounter, "hit");
       $islocked = mysqli_result($result, $newcounter, "islocked");
+      $result2 = mysqli_query($con, "select * from reply where id=$id");
+      $total2 = mysqli_num_rows($result2);
       echo ("
       <div class='Div60W' style='margin-top:10px;'>
         <div class='menuNav11-6'>$id</div>
         <a href=qnaCon.html?id=$id><div class='menuNav40-6'>$topic
       ");
       if ($islocked == 1) echo("<i class='fas fa-lock'></i>");
+      if ($total2 != 0) echo(" [$total2]");
       echo("</div></a>
         <div class='menuNav15-6'>$writer</div>
         <div class='menuNav15-6'>$wdate</div>

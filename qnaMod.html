@@ -42,7 +42,7 @@ $content = mysqli_result($result,0,"content");
         질문 등록
       </div>
       <div class="Div05W">
-        <form id='post' method=post action=qnaIn.php  enctype='multipart/form-data'>
+        <form id='post' method=post action=qnaMod.php?id=<? echo $id; ?>  enctype='multipart/form-data'>
         <div class="inputList" style="display:inline-block; width:200px;">
           제목
         </div>

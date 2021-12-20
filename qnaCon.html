@@ -17,7 +17,8 @@ function mysqli_result($res,$row=0,$col=0)
 $id = $_GET['id'];
 if (isset($_COOKIE['UserID'])) $uid = $_COOKIE['UserID'];
 else $uid = "";
-$isadmin = $_COOKIE['isadmin'];
+if (isset($_COOKIE['isadmin'])) $isadmin = $_COOKIE['isadmin'];
+else $isadmin = 0;
 
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 $result = mysqli_query($con, "select * from qna where id='$id'");

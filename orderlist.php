@@ -28,6 +28,7 @@ else{
     elseif ($status == 3) echo("발송 완료");
     elseif ($status == 10) echo("취소 완료");
     elseif ($status == 100) echo("리뷰 작성 대기중");
+    elseif ($status == 200) echo("리뷰 작성 완료");
     echo("
         </div>
       </div>

@@ -19,6 +19,7 @@ $id = $_GET['id'];
 $con = mysqli_connect("localhost","root","kyle0908", "shopmall");
 
 mysqli_query($con, "delete from qna where id=$id");
+mysqli_query($con, "delete from reply where id=$id");
 echo("
   <script>
   window.alert('게시글이 삭제 되었습니다.');
